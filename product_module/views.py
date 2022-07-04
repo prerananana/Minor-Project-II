@@ -20,3 +20,7 @@ def destination_details(request):
     return render(request, 'destination_details.html', {})
 def elements(request):
     return render(request, 'elements.html', {})
+def login(request):
+    return render(request, 'login.html', {})
+def registration(request):
+    return render(request, 'registration.html', {})
