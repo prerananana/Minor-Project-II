@@ -6,9 +6,12 @@ def index(request):
     return render(request, 'index.html',{})
 def about(request):
     return render(request, 'about.html', {})
+def packages(request):
+    return render(request, 'packages.html', {})
 def destination(request):
     return render(request, 'travel_destination.html', {})
 def blog(request):
     return render(request, 'blog.html', {})
 def singleblog(request):
     return render(request, 'single-blog.html', {})
+
