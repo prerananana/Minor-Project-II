@@ -12,3 +12,9 @@ def blog(request):
     return render(request, 'blog.html', {})
 def singleblog(request):
     return render(request, 'single-blog.html', {})
+def contact(request):
+    return render(request, 'contact.html', {})
+def destination_details(request):
+    return render(request, 'destination_details.html', {})
+def elements(request):
+    return render(request, 'elements.html', {})
