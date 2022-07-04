@@ -1,9 +1,7 @@
 from django.urls import path
-<<<<<<< HEAD
-from .views import index,about,destination,blog,singleblog,packages
-=======
-from .views import index,about,destination,blog,singleblog,contact,destination_details,elements
->>>>>>> c36e4b68b47eacd58414f5d2d75cc36e4c00a16a
+
+from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages
+
 urlpatterns = [
     path('', index),
     path('index.html', index),

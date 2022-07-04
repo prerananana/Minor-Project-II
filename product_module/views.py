@@ -14,13 +14,9 @@ def blog(request):
     return render(request, 'blog.html', {})
 def singleblog(request):
     return render(request, 'single-blog.html', {})
-<<<<<<< HEAD
-
-=======
 def contact(request):
     return render(request, 'contact.html', {})
 def destination_details(request):
     return render(request, 'destination_details.html', {})
 def elements(request):
     return render(request, 'elements.html', {})
->>>>>>> c36e4b68b47eacd58414f5d2d75cc36e4c00a16a
