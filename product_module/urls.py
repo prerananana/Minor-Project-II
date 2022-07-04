@@ -1,8 +1,11 @@
 from django.urls import path
 
+
 from .views import index,about,destination,blog,singleblog,packages
 
 from .views import index,about,destination,blog,singleblog,contact,destination_details,elements
+
+from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages
 
 urlpatterns = [
     path('', index),
