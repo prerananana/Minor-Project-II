@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages
+from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages,Login
 
 urlpatterns = [
     path('', index),
@@ -13,5 +13,6 @@ urlpatterns = [
     path('single-blog.html',singleblog),
     path('contact.html',contact),
     path('destination_details.html',destination_details),
-    path('elements.html',elements)
+    path('elements.html',elements),
+    path('login.html',Login)
 ]
