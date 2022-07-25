@@ -114,19 +114,17 @@
                     {% for booking in bookings %}
                     <div class="col-lg-4 col-md-6">
                         <div class="single_place">
-                            
                             <div class="thumb">
-                                <img src="{% static 'img/place/1.png' %}" alt="">
+                                <img src="{{ booking.package.image_url }}" alt="" height="200" width="300">
                                 <a href="#" class="prise">NRs. {{ booking.package.price }}</a>
                             </div>
                             <div class="place_info">
-                                <a href="destination_details.html"><h3>{{ booking.destination }}</h3></a>
+                                <a href="{{ booking.package.package_name_alias }}.html"><h3>{{ booking.destination }}</h3></a>
                                 <p>{{ booking.package.name }}</p>
-                                <div class="rating_days d-flex justify-content-between">
-                                   
+                                <div class="">
                                     <div class="days">
                                         <i class="fa fa-clock-o"></i>
-                                        <a href="#">5 Days</a>
+                                        <a href="#">{{ booking.package.time }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +164,7 @@
                         <div class="video_wrap text-center">
                             <h3>Enjoy Video</h3>
                             <div class="video_icon">
-                                <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=csaQc_qpn8U&t=25s">
+                                <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=csaQc_qpn8U&t=25s" >
                                     <i class="fa fa-play"></i>
                                 </a>
                             </div>

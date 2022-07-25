@@ -1,11 +1,6 @@
 from django.urls import path
 
-<<<<<<< HEAD
-from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages, login, registration
-=======
-
-from .views import index,about,destination,blog,singleblog,contact,destination_details,elements, packages,Login
->>>>>>> 1a79913892e2ec054656cf7385e9323856e4339d
+from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna
 
 urlpatterns = [
     path('', index),
@@ -16,12 +11,19 @@ urlpatterns = [
     path('blog.html',blog),
     path('single-blog.html',singleblog),
     path('contact.html',contact),
-    path('destination_details.html',destination_details),
+    path('destination_details.html',destination_detaill),
     path('elements.html',elements),
-<<<<<<< HEAD
     path('login.html',login),
-    path('registration.html',registration)
-=======
-    path('login.html',Login)
->>>>>>> 1a79913892e2ec054656cf7385e9323856e4339d
+    path('registration.html',registration),
+    path('test.html',test),
+    path('rara.html',rara),
+    path('mardi.html',mardi),
+    path('mustang.html',mustang),
+    path('mountain.html',mountain),
+    path('langtang.html',langtang),
+    path('pokhara.html',pokhara),
+    path('annapurna.html',annapurna),
+    path('lumbini.html',lumbini),
+    path('chitwan.html',chitwan),
+    path('bhaktapur.html',bhaktapur),
 ]

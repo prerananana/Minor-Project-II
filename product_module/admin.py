@@ -1,7 +1,7 @@
 from importlib.resources import Package
 from pyexpat import model
 from django.contrib import admin
-from .models import guide, customer, package, agency, booking
+from .models import guide, customer, package, agency, booking, destination_detail
 
 class guideAdmin(admin.ModelAdmin):
     list_display= ["guide_name", "experience", "type", "contact_no", "review",]
@@ -20,7 +20,7 @@ class customerAdmin(admin.ModelAdmin):
 admin.site.register(customer, customerAdmin)
 
 class packageAdmin(admin.ModelAdmin):
-    list_display= ["package_id", "package_name", "price", "type", ]
+    list_display= ["package_id", "package_name", "price", "type", "package_name_alias"]
     search_fields= ["package_id", "package_name", "price", "type", ]
     list_filter= ["package_name", "price", "type", ]
     class Meta:
@@ -44,4 +44,11 @@ class bookingAdmin(admin.ModelAdmin):
         model= booking
 admin.site.register(booking, bookingAdmin)
 
+class destination_detailAdmin(admin.ModelAdmin):
+    list_display= ["destination_id", "destination", "description","days", "package",]
+    search_fields= ["destination_id", "destination", "description","package",]
+    list_filter= ["destination_id", "destination", "description","package",]
+    class Meta:
+        model= destination_detail
+admin.site.register(destination_detail, destination_detailAdmin)
 

@@ -26,6 +26,8 @@ class package(models.Model):
     image_url= models.CharField(max_length=500, default="")
     def image_tag(self):
         return mark_safe(f'<img src="{self.image_url}" width="50" height="50" />')
+    time= models.CharField(max_length=100, default="5 days")
+    package_name_alias= models.CharField(max_length=100, default="")
 
 class agency(models.Model):
     agency_id= models.IntegerField()
@@ -42,7 +44,11 @@ class booking(models.Model):
     customer= models.ForeignKey(customer, on_delete=models.CASCADE, null=True)
     guide= models.ForeignKey(guide, on_delete=models.CASCADE)
     package= models.ForeignKey(package, on_delete=models.CASCADE)
+    # destination_detail= models.ForeignKey(destination_detail, on_delete=models.CASCADE)
 
-
-
-
+class destination_detail(models.Model):
+    destination_id= models.IntegerField()
+    destination= models.CharField(max_length=200)
+    description= models.TextField(blank= True)
+    days= models.TextField(blank=True, default="")
+    package= models.ForeignKey(package, on_delete=models.CASCADE)
