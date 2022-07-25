@@ -1,12 +1,7 @@
 from django.db import models
+from django.utils.html import mark_safe
 
 # Create your models here.
-class package(models.Model):
-    package_id= models.IntegerField()
-    package_name= models.CharField(max_length=200)
-    price= models.FloatField()
-    type= models.CharField(max_length=100)
-
 class customer(models.Model):
     customer_id= models.IntegerField()
     fullname= models.CharField(max_length=200)
@@ -22,6 +17,15 @@ class guide(models.Model):
     contact_no= models.CharField(max_length=200)
     no_of_routes= models.IntegerField()
     review= models.CharField(max_length=500)
+
+class package(models.Model):
+    package_id= models.IntegerField()
+    package_name= models.CharField(max_length=200)
+    price= models.FloatField()
+    type= models.CharField(max_length=100)
+    image_url= models.CharField(max_length=500, default="")
+    def image_tag(self):
+        return mark_safe(f'<img src="{self.image_url}" width="50" height="50" />')
 
 class agency(models.Model):
     agency_id= models.IntegerField()

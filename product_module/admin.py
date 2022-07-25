@@ -1,15 +1,7 @@
 from importlib.resources import Package
 from pyexpat import model
 from django.contrib import admin
-from .models import guide, package, booking, agency, customer
-
-class packageAdmin(admin.ModelAdmin):
-    list_display= ["package_id", "package_name", "price", "type", ]
-    search_fields= ["package_id", "package_name", "price", "type", ]
-    list_filter= ["package_name", "price", "type", ]
-    class Meta:
-        model= Package
-admin.site.register(package, packageAdmin)
+from .models import guide, customer, package, agency, booking
 
 class guideAdmin(admin.ModelAdmin):
     list_display= ["guide_name", "experience", "type", "contact_no", "review",]
@@ -26,6 +18,15 @@ class customerAdmin(admin.ModelAdmin):
     class Meta:
         model= customer
 admin.site.register(customer, customerAdmin)
+
+class packageAdmin(admin.ModelAdmin):
+    list_display= ["package_id", "package_name", "price", "type", ]
+    search_fields= ["package_id", "package_name", "price", "type", ]
+    list_filter= ["package_name", "price", "type", ]
+    class Meta:
+        model= Package
+        verbose_name_plural= "Packages"
+admin.site.register(package, packageAdmin)
 
 class agencyAdmin(admin.ModelAdmin):
     list_display= ["agency_id", "agency_name", "location", "package_id",]

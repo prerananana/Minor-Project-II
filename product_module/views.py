@@ -10,7 +10,12 @@ def about(request):
 def packages(request):
     return render(request, 'packages.html', {})
 def destination(request):
-    return render(request, 'travel_destination.html', {})
+    destination= booking.objects.all()
+    packages= package.objects.all()
+    context = {'destination': destination,
+              'packages': packages,
+            }
+    return render(request, 'travel_destination.html', context)
 def blog(request):
     return render(request, 'blog.html', {})
 def singleblog(request):
@@ -23,6 +28,7 @@ def destination_details(request):
 def elements(request):
     return render(request, 'elements.html', {})
 
+#info-needed
 def index(request):
     if request.method == "GET":
         package_id = request.GET.get("package")
@@ -34,16 +40,23 @@ def index(request):
             filter_query = Q(guide__id=guide_id)
             bookings = booking.objects.filter(filter_query)
         else:
+
     #         # new product : product that are registered since last 7 days (top 10 products)
     #         new_products = Product.objects.filter(Q(registered_on__gte=(datetime.now() - timedelta(days=7))))[:10]
+            
+            #info----needed-----
             bookings = booking.objects.all()
             packages = package.objects.all()
             guides = guide.objects.all()
-            context = {'bookings': bookings,
-             'packages': packages,
-             'guides': guides,
-             'search_query': '',}
+            context = {
+                'bookings': bookings,
+                'packages': packages,
+                'guides': guides,
+                'search_query': '',
+                }
             return render(request, 'index.html', context)
+
+            #till----here-----
     # elif request.method == "POST":
     #     q = request.POST.get("query")
     # if "-" in q: 
@@ -63,7 +76,7 @@ def index(request):
     #         'brands': brands,
     #         'search_query': q,
     #     }
-    #   return render(request, 'index.html', context)
+    # return render(request, 'index.html', context)
 
 
 
