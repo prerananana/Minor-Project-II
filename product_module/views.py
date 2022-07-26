@@ -1,10 +1,27 @@
-from django.shortcuts import render
+import re
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
-from .models import booking, package, guide
+from django.contrib.auth.models import User
+from .models import booking, package, guide 
+from .models import contactDetails
+from django.contrib.auth.models import User,auth
 # Create your views here.
 
+def AddContact(request):
 
+    message = request.POST["me"]
+    name = request.POST["name"]
+    email = request.POST["e"]
+
+    subject = request.POST["subject"]
+    print("success")
+    Contact_Info = contactDetails(message=message,name = name,email = email,subject=subject  )
+    Contact_Info.save()
+    return render(request, 'contact.html' ,{})
+def NewUser(request):
+
+    return render(request, 'index.html' ,{})
 def about(request):
     return render(request, 'about.html', {})
 def packages(request):
@@ -28,7 +45,10 @@ def elements(request):
     return render(request, 'elements.html', {})
 def Login(request):
     return render(request, 'login.html', {})
-
+def Registration(request):
+    return render(request, 'registration.html', {})
+def form(request):
+    return render(request, 'form.html', {})
 #info-needed
 def index(request):
     if request.method == "GET":

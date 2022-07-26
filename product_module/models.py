@@ -5,6 +5,8 @@ from django.utils.html import mark_safe
 class customer(models.Model):
     customer_id= models.IntegerField()
     fullname= models.CharField(max_length=200)
+    username= models.CharField(max_length=200,default="")
+    password= models.CharField(max_length=200,default="")
     address= models.CharField(max_length=200)
     phone= models.CharField(max_length=200)
     email= models.CharField(max_length=300)
@@ -43,6 +45,9 @@ class booking(models.Model):
     guide= models.ForeignKey(guide, on_delete=models.CASCADE)
     package= models.ForeignKey(package, on_delete=models.CASCADE)
 
-
-
+class contactDetails(models.Model):
+    message=models.TextField(max_length=500, default="")
+    name= models.CharField(max_length=200)
+    email= models.CharField(max_length=200,  default="")
+    subject = models.CharField(max_length=200, default="")
 
