@@ -1,14 +1,55 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
-from .models import booking, package, guide
+from .models import booking, package, guide, contactDetails,customerDetails
+from django.contrib.auth.models import User, auth
+from django.contrib import messages
 # Create your views here.
 
+def AddContact(request):
 
+    message = request.POST["me"]
+    name = request.POST["name"]
+    email = request.POST["e"]
+
+    subject = request.POST["subject"]
+    print("success")
+    Contact_Info = contactDetails(message=message,name = name,email = email,subject=subject  )
+    Contact_Info.save()
+    return render(request, 'contact.html' ,{})
+
+def NewUser(request):
+    f_name=request.POST["full_name"]
+    u_name=request.POST["user_name"]
+    password=request.POST["pass"]
+    address=request.POST["address"]
+    phone=request.POST["phone"]
+    email=request.POST["email"]
+
+    Customer_Info = customerDetails(fullname = f_name,username = u_name,password = password, address = address,phone = phone, email = email,  )
+    Customer_Info.save()
+    return render(request, 'index.html' ,{})
+def LogUser(request):
+    if request.method == 'POST':
+        username=request.POST["user_name"]
+        password=request.POST["password"]
+
+        Customer_Info = auth.authenticate(username=username,password=password)
+
+        if Customer_Info is not None:
+            auth.login(request,Customer_Info)
+            return redirect("/")
+        else:
+            messages.info(request,'invalid credentials')
+            return redirect('login.html')
+    else:
+        return render(request, 'login.html' ,{})
 def about(request):
     return render(request, 'about.html', {})
+
 def packages(request):
     return render(request, 'packages.html', {})
+
 def destination(request):
     destination= booking.objects.all()
     packages= package.objects.all()
@@ -16,18 +57,33 @@ def destination(request):
               'packages': packages,
             }
     return render(request, 'travel_destination.html', context)
+
 def blog(request):
     return render(request, 'blog.html', {})
+
 def singleblog(request):
     return render(request, 'single-blog.html', {})
+
 def contact(request):
     return render(request, 'contact.html', {})
+
 def destination_details(request):
     return render(request, 'destination_details.html', {})
+
 def elements(request):
     return render(request, 'elements.html', {})
+
 def Login(request):
     return render(request, 'login.html', {})
+
+def Registration(request):
+    return render(request, 'registration.html', {})
+
+def Registration_agency(request):
+    return render(request, 'registration_agency.html', {})
+    
+def Registration_guide(request):
+    return render(request, 'registration_guide.html', {})
 
 #info-needed
 def index(request):

@@ -1,7 +1,7 @@
 from importlib.resources import Package
 from pyexpat import model
 from django.contrib import admin
-from .models import guide, customer, package, agency, booking
+from .models import guide, customerDetails, package, agency, booking,contactDetails
 
 class guideAdmin(admin.ModelAdmin):
     list_display= ["guide_name", "experience", "type", "contact_no", "review",]
@@ -12,12 +12,12 @@ class guideAdmin(admin.ModelAdmin):
 admin.site.register(guide, guideAdmin)
 
 class customerAdmin(admin.ModelAdmin):
-    list_display= ["fullname", "address", "phone", "email",]
-    search_fields= ["customer_id", "fullname", "address", "phone", "email",]
-    list_filter= ["customer_id", "fullname", "address", "phone", "email", ]
+    list_display= ["fullname","username","password", "address", "phone", "email",]
+    search_fields= ["fullname","username","password", "address", "phone", "email",]
+    list_filter= ["fullname","username","password", "address", "phone", "email",]
     class Meta:
-        model= customer
-admin.site.register(customer, customerAdmin)
+        model= customerDetails
+admin.site.register(customerDetails, customerAdmin)
 
 class packageAdmin(admin.ModelAdmin):
     list_display= ["package_id", "package_name", "price", "type", ]
@@ -37,11 +37,17 @@ class agencyAdmin(admin.ModelAdmin):
 admin.site.register(agency, agencyAdmin)
 
 class bookingAdmin(admin.ModelAdmin):
-    list_display= ["destination", "ticket_type", "customer", "guide", "package",]
-    search_fields= ["booking_id", "destination", "ticket_type", "customer", "guide", "package",]
-    list_filter= ["booking_id","destination", "ticket_type", "customer", "guide", "package",]
+    list_display= ["destination", "ticket_type", "guide", "package",]
+    search_fields= ["booking_id", "destination", "ticket_type",  "guide", "package",]
+    list_filter= ["booking_id","destination", "ticket_type",  "guide", "package",]
     class Meta:
         model= booking
 admin.site.register(booking, bookingAdmin)
-
+class contactAdmin(admin.ModelAdmin):
+    list_display= ["message","name", "email", "subject",]
+    search_fields= ["message","name", "email", "subject",]
+    list_filter= ["message","name", "email", "subject",]
+    class Meta:
+        model= contactDetails
+admin.site.register(contactDetails, contactAdmin)
 

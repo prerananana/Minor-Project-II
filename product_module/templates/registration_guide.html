@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<body>
+	<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Registration</h3>
+                       <p class="sample-text">
+							Every avid independent filmmaker has <b>Bold</b> about making that <i>Italic</i> interest documentary,
+							or short</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!-- Start Align Area -->
+	<div class="whole-wrap">
+		<div class="container box_1170">
+			<div class="section-top-border">
+				<div class="row">
+					<div class="col-lg-8 col-md-8">
+						<section class="button-area">
+							<div class="button-group-area mt-40">
+								<a href="registration.html" class="genric-btn link radius">Register as Customer</a>
+								<a href="registration_agency.html" class="genric-btn link radius">Register as Agency</a>
+								<a href="registration_guide.html" class="genric-btn link radius">Register as Guide</a>
+								
+							</div>
+						</section>
+
+						<h3 class="mb-30">Registration As Guide</h3>
+						<p class="sample-text">
+							 <b>Hello</b> <i>There</i> </p>
+						<form action="{% url 'new_user' %}" method ='post'>
+                            {% csrf_token %}
+                            <div class="mt-10">
+								<input type="text" name="full_name" placeholder=" Guide Name"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Guide Name'" required
+									class="single-input">
+							</div>
+							<div class="mt-10">
+								<input type="text" name="exp" placeholder="Experience"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
+									class="single-input">
+							</div>
+							<div class="mt-10">
+								<input type="text" name="type" placeholder="Type"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Type'" required
+									class="single-input">
+							</div>
+                            <div class="mt-10">
+								<input type="number" name="contact" placeholder="Contact"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contact'" required
+									class="single-input">
+							</div>
+							
+							<!--<div class="mt-10">
+								<textarea class="form-control w-100" name="review" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
+							</div>-->
+							
+							<section class="button-area">
+								<div class="container box_1170 border-top-generic">
+									<button type="submit" class="button button-contactForm boxed-btn">Register</button>
+								</div>
+								
+							</section>
+							<div class="container box_1170 border-top-generic">
+								Already Registered<a href="Login.html" class="genric-btn link-border circle">Login</a>
+							</div>
+							<!-- For Gradient Border Use -->
+							<!-- <div class="mt-10">
+										<div class="primary-input">
+											<input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
+											<label for="primary-input"></label>
+										</div>
+									</div> -->
+
+						</form>
+					</div>
+					
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Align Area -->
+
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
