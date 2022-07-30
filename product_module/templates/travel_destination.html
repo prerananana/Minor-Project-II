@@ -17,7 +17,7 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text text-center">
                         <h3>Destinations</h3>
-                        <p>Pixel perfect design with awesome contents</p>
+                        <p>The finest deals for the top tourist destinations across Nepal</p>
                     </div>
                 </div>
             </div>
@@ -37,13 +37,11 @@
                             <div class="filter_inner">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        {% for destination in destination %}
                                         <div class="single_select">
                                             <select>
                                                 <option data-display="Country">Country</option>
                                               </select>
                                         </div>
-                                        {% endfor %}
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_select">
@@ -86,7 +84,7 @@
                                         <a href="#" class="prise">NRs. {{ destination.package.price }}</a>
                                     </div>
                                     <div class="place_info">
-                                        <a href="destination_details.html"><h3>{{ destination.destination }}</h3></a>
+                                        <a href="{{ destination.package.package_name_alias }}.html"><h3>{{ destination.destination }}</h3></a>
                                         <p>{{ destination.package.name }}</p>
                                         <div class="">
                                             <!-- <span class="d-flex justify-content-center align-items-center">
@@ -249,7 +247,7 @@
             </div>
         </div>
     </div> 
-    <div class="recent_trip_area">
+    <!-- <div class="recent_trip_area">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -309,7 +307,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <script>

@@ -1,109 +1,91 @@
-<<<<<<< HEAD
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Slide Navbar</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'slide navbar style.css'%}">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
-	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
-
-			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="txt" placeholder="User name" required="">
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Sign up</button>
-				</form>
-			</div>
-
-			<div class="login">
-				<form>
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
-				</form>
-			</div>
-	</div>
-</body>
-</html>
-=======
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
 <!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<html class="no-js" lang="zxx">
 
-    <link rel="stylesheet" href="{% static fonts/icomoon/style.css' %}">
+<body>
+  <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
 
-    <link rel="stylesheet" href="{% static login/css/owl.carousel.min.css' %}">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static login/css/bootstrap.min.css' %}">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="{% static login/css/style.css' %}">
-
-    <title>Login</title>
-  </head>
-  <body>
-  
-
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('images/bg_1.jpg');"></div>
-    <div class="contents order-2 order-md-1">
-
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-7">
-            <h3>Login to <strong>Colorlib</strong></h3>
-            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
-            <form action="#" method="post">
-              <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="username">
-              </div>
-              <div class="form-group last mb-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Your Password" id="password">
-              </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-              </div>
-
-              <input type="submit" value="Log In" class="btn btn-block btn-primary">
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- Start Align Area -->
+  <div class="whole-wrap">
+    <div class="container box_1170">
+      <div class="section-top-border">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <h3 class="mb-30">Login </h3>
+            <p class="sample-text">
+               <b>Hello</b> <i>There!</i> </p>
+               <form action="" method ='POST'>
+                  {% csrf_token %}
+                <div class="mt-10">
+                <input type="text" name="user_name" placeholder="Username"
+                  onfocus="this.placeholder = ''" onblur="this.placeholder = ' Name'" required
+                  class="single-input">
+                </div>
+                  <div class="mt-10">
+                  <input type="password" name="pass1" placeholder="Password"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
+                    class="single-input">
+                    <section class="button-area">
+                      <div class="container box_1170 border-top-generic">
+                        <button type="submit" class="button button-contactForm boxed-btn">Login</button>
+                      </div>
+                      
+                    </section>
+                  
+                </section>
+                <div class="container box_1170 border-top-generic">
+                  Create a new account<a href="registration.html" class="genric-btn link-border circle">Registration</a>
+                </div>
+                <!-- For Gradient Border Use -->
+                <!-- <div class="mt-10">
+                      <div class="primary-input">
+                        <input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
+                        <label for="primary-input"></label>
+                      </div>
+                    </div> -->
 
             </form>
+          </div>
+          
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    
   </div>
-    
-    
+  <!-- End Align Area -->
 
-    <script src="{ %static login/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{ %static login/js/popper.min.js' %}"></script>
-    <script src="{ %static login/js/bootstrap.min.js' %}"></script>
-    <script src="{ %static login/js/main.js' %}"></script>
-  </body>
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+    </script>
+</body>
 </html>
 {% endblock %}
->>>>>>> 1a79913892e2ec054656cf7385e9323856e4339d

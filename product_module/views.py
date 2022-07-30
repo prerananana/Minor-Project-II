@@ -1,23 +1,58 @@
 #from msilib.schema import Class
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
 from .models import booking, package, guide, destination_detail
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib import messages
 # Create your views here.
 
 
 def about(request):
-    return render(request, 'about.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'about.html', context)
 
 def mardi(request):
-    return render(request, 'mardi.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'mardi.html', context)
 
 def mustang(request):
-    return render(request, 'mustang.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'mustang.html', context)
 
 def mountain(request):
-    return render(request, 'mountain.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'mountain.html', context)
 
 def langtang(request):
     bookings = booking.objects.all()
@@ -31,22 +66,70 @@ def langtang(request):
     return render(request, 'langtang.html', context)
 
 def pokhara(request):
-    return render(request, 'pokhara.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'pokhara.html', context)
 
 def annapurna(request):
-    return render(request, 'annapurna.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'annapurna.html', context)
 
 def lumbini(request):
-    return render(request, 'lumbini.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'lumbini.html', context)
 
 def chitwan(request):
-    return render(request, 'chitwan.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'chitwan.html', context)
 
 def bhaktapur(request):
-    return render(request, 'bhaktapur.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'bhaktapur.html', context)
 
 def rara(request):
-    return render(request, 'rara.html', {})
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'rara.html', context)
 
 def test(request):
     destination= destination_detail.objects.all()
@@ -88,9 +171,55 @@ def destination_detaill(request):
 def elements(request):
     return render(request, 'elements.html', {})
 def login(request):
+    if request.method == 'POST':
+        username= request.POST.get('user_name')
+        password= request.POST.get('pass1')
+
+        user= authenticate(username= username, password= password)
+
+        if user is None:
+            auth_login(request, user)
+            fname= user.first_name
+            return render(request, 'index.html', {'fname': fname} )
+        
+        else:
+            messages.error(request, "Bad Credentials!")
+            return redirect('index.html')
     return render(request, 'login.html', {})
 def registration(request):
+    if request.method == 'POST':
+        fname= request.POST.get('fname')
+        lname= request.POST.get('lname')
+        username= request.POST.get('user_name')
+        password= request.POST.get('pass1')
+        confirm= request.POST.get('pass2')
+        address= request.POST.get('address')
+        phone= request.POST.get('phone')
+        email= request.POST.get('email')
+
+        myuser= User.objects.create_user(username, email, password)
+        myuser.first_name= fname
+        myuser.last_name= lname
+
+        myuser.save()
+
+        messages.success(request, "Your account has been sucessfully created!")
+        return redirect('login.html')
     return render(request, 'registration.html', {})
+def signout(request):
+    logout(request)
+    messages.success(request, "Logged Out Sucessfully")
+    return redirect('index.html')
+def submit(request):
+    bookings = booking.objects.all()
+    packages = package.objects.all()
+    guides = guide.objects.all()
+    context = {
+        'bookings': bookings,
+        'packages': packages,
+        'guides': guides,
+    }
+    return render(request, 'submit_demo.html', context)
 #info-needed
 def index(request):
     if request.method == "GET":

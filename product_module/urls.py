@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna
+from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna, submit, signout
 
 urlpatterns = [
     path('', index),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('destination_details.html',destination_detaill),
     path('elements.html',elements),
     path('login.html',login),
+    path('signout.html',signout),
     path('registration.html',registration),
     path('test.html',test),
     path('rara.html',rara),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('lumbini.html',lumbini),
     path('chitwan.html',chitwan),
     path('bhaktapur.html',bhaktapur),
+    path('submit_demo.html',submit)
 ]
