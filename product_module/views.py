@@ -1,15 +1,20 @@
 #from msilib.schema import Class
+from inspect import ismethoddescriptor
 from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
+
+from product_module.decorators import unauthenticated_user
 from .models import booking, package, guide, destination_detail
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
+from .decorators import unauthenticated_user
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-
-
+def search(request):
+    return render(request, 'search.html', {})
 def about(request):
     bookings = booking.objects.all()
     packages = package.objects.all()
@@ -120,6 +125,7 @@ def bhaktapur(request):
     }
     return render(request, 'bhaktapur.html', context)
 
+@login_required(login_url='login.html')
 def rara(request):
     bookings = booking.objects.all()
     packages = package.objects.all()
@@ -170,21 +176,23 @@ def destination_detaill(request):
 
 def elements(request):
     return render(request, 'elements.html', {})
+
+@unauthenticated_user #decorater is called
 def login(request):
     if request.method == 'POST':
         username= request.POST.get('user_name')
         password= request.POST.get('pass1')
 
-        user= authenticate(username= username, password= password)
-
-        if user is None:
-            auth_login(request, user)
-            fname= user.first_name
-            return render(request, 'index.html', {'fname': fname} )
+        user= authenticate(request, username= username, password= password)
         
+        if user is not None:
+            auth_login(request, user)
+            return redirect('index.html')
+            fname= user.first_name
+            # return render(request, 'index.html', {'fname': fname} )
         else:
             messages.error(request, "Bad Credentials!")
-            return redirect('index.html')
+            return redirect('login.html')
     return render(request, 'login.html', {})
 def registration(request):
     if request.method == 'POST':
@@ -202,6 +210,7 @@ def registration(request):
         myuser.last_name= lname
 
         myuser.save()
+        myuser.isactive= False
 
         messages.success(request, "Your account has been sucessfully created!")
         return redirect('login.html')
@@ -247,6 +256,12 @@ def index(request):
                 'search_query': '',
                 }
             return render(request, 'index.html', context)
+        
+    # if request.method == 'POST':
+    #     fname= request.POST.get('fname')
+    #     lname= request.POST.get('lname')
+    #     username= request.POST.get('user_name')
+
 
             #till----here-----
     # elif request.method == "POST":

@@ -1,11 +1,12 @@
 from django.urls import path
 
-from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna, submit, signout
+from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna, submit, signout, search
 
 urlpatterns = [
     path('', index),
     path('index.html', index),
     path('about.html', about),
+    path('search.html', search),
     path('packages.html', packages),
     path('travel_destination.html', destination),
     path('blog.html',blog),
