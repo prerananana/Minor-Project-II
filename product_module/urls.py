@@ -20,5 +20,7 @@ urlpatterns = [
     path('login.html',Login),
     path('add_contact', views.AddContact, name='add_contact'),
     path('new_user', views.NewUser, name='new_user'),
+    path('new_agency', views.NewAgency, name='new_agency'),
+
     path('log_user', views.LogUser, name='log_user')
 ]

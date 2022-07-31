@@ -42,7 +42,7 @@
 						<h3 class="mb-30">Registration As Agency</h3>
 						<p class="sample-text">
 							 <b>Hello</b> <i>There</i> </p>
-						<form action="{% url 'new_user' %}" method ='post'>
+						<form action="{% url 'new_agency' %}" method ='post'>
                             {% csrf_token %}
                             <div class="mt-10">
 								<input type="text" name="agency_name" placeholder=" Agency Name"
@@ -50,7 +50,7 @@
 									class="single-input">
 							</div>
 							<div class="mt-10">
-								<input type="text" name="Location" placeholder="Location"
+								<input type="text" name="location" placeholder="Location"
 									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Location'" required
 									class="single-input">
 							</div>

@@ -1,7 +1,8 @@
+
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
-from .models import booking, package, guide, contactDetails,customerDetails
+from .models import booking, package, guide, contactDetails,customerDetails,agency,package
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 # Create your views here.
@@ -29,13 +30,24 @@ def NewUser(request):
     Customer_Info = customerDetails(fullname = f_name,username = u_name,password = password, address = address,phone = phone, email = email,  )
     Customer_Info.save()
     return render(request, 'index.html' ,{})
+    
+def NewAgency(request,id):
+    f_name=request.POST["agency_name"]
+    location=request.POST["location"]
+   
+    query = package.objects.get(pk=id) 
+    query.package.add(request.user)   
+    Agency_Info = agency(agency_name = f_name,location = location,  )
+    Agency_Info.save()
+    return render(request, 'index.html' ,{})
+
 def LogUser(request):
     if request.method == 'POST':
         username=request.POST["user_name"]
         password=request.POST["password"]
 
         Customer_Info = auth.authenticate(username=username,password=password)
-
+        package = package.objects.get(id=id)
         if Customer_Info is not None:
             auth.login(request,Customer_Info)
             return redirect("/")

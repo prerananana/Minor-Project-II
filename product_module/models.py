@@ -30,10 +30,10 @@ class package(models.Model):
         return mark_safe(f'<img src="{self.image_url}" width="50" height="50" />')
 
 class agency(models.Model):
-    agency_id= models.IntegerField()
+    
     agency_name= models.CharField(max_length=200)
     location= models.CharField(max_length=200)
-    package= models.ForeignKey(package, on_delete=models.CASCADE)
+    package= models.ForeignKey(package, on_delete=models.CASCADE, verbose_name='atending', null=True)                   
     class Meta:
         verbose_name_plural = "Agencies"
 

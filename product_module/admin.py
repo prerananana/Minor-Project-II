@@ -29,9 +29,9 @@ class packageAdmin(admin.ModelAdmin):
 admin.site.register(package, packageAdmin)
 
 class agencyAdmin(admin.ModelAdmin):
-    list_display= ["agency_id", "agency_name", "location", "package_id",]
-    search_fields= ["agency_id", "agency_name", "location", "package_id",]
-    list_filter= ["agency_id", "agency_name", "location", "package_id",]
+    list_display= [ "agency_name", "location", "package_id",]
+    search_fields= [ "agency_name", "location", "package_id",]
+    list_filter= [ "agency_name", "location", "package_id",]
     class Meta:
         model= agency
 admin.site.register(agency, agencyAdmin)
