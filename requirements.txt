@@ -1,0 +1,15 @@
+asgiref==3.5.0
+Django==4.0.4
+mysql-connector-python==8.0.30
+mysqlclient==2.1.1
+protobuf==3.19.4
+PyMySQL==1.0.2
+PyQt3D==5.15.5
+PyQt5==5.15.6
+PyQt5-sip==12.9.0
+PyQtChart==5.15.5
+PyQtDataVisualization==5.15.5
+PyQtNetworkAuth==5.15.5
+PyQtPurchasing==5.15.5
+QScintilla==2.13.2
+sqlparse==0.4.2
