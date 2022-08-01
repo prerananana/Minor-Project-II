@@ -41,6 +41,13 @@
                              <b>Hello</b> <i>There</i> </p>
                         <form action="" method ='post'>
                             {% csrf_token %}
+                             <div class="mt-10">
+                                <label for="user-group">Are you a?</label>
+                                <select name="user-group" id="user-group">
+                                    <option value="agency">Agency</option>
+                                    <option value="customer">Customer</option>
+                                </select>
+                            </div>
                             <div class="mt-10">
                                 <input type="text" name="fname" placeholder=" First Name"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required

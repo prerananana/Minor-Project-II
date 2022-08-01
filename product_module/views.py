@@ -4,6 +4,7 @@ from multiprocessing import context
 from django.shortcuts import redirect, render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.db.models import Q
+from django.contrib.auth.models import Group
 
 from product_module.decorators import unauthenticated_user
 from .models import booking, package, guide, destination_detail
@@ -200,6 +201,7 @@ def login(request):
     return render(request, 'login.html', {})
 def registration(request):
     if request.method == 'POST':
+        grp = request.POST.get('user-group')
         fname= request.POST.get('fname')
         lname= request.POST.get('lname')
         username= request.POST.get('user_name')
@@ -210,12 +212,17 @@ def registration(request):
         email= request.POST.get('email')
 
         myuser= User.objects.create_user(username, email, password)
+        
         myuser.first_name= fname
         myuser.last_name= lname
-
-        myuser.save()
         myuser.isactive= False
+        # to access admin panel
+        myuser.is_staff = True
+        myuser.save()
 
+        group = Group.objects.get(name=grp)
+        # added to group
+        myuser.groups.add(group)
         messages.success(request, "Your account has been sucessfully created!")
         return redirect('login.html')
     return render(request, 'registration.html', {})
