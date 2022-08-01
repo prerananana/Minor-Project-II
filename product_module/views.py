@@ -10,9 +10,13 @@ from .models import booking, package, guide, destination_detail
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
-from .decorators import unauthenticated_user
+from .decorators import allowed_users, unauthenticated_user
 from django.contrib.auth.decorators import login_required
+# from .models import User_Role
 # Create your views here.
+@allowed_users(allowed_roles=['admin'])
+def admin_demo(request):
+    return render(request, 'admin', {})
 def search(request):
     return render(request, 'search.html', {})
 def about(request):

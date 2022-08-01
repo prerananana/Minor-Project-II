@@ -1,7 +1,13 @@
 from django.db import models
 from django.utils.html import mark_safe
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+# class User_Role(AbstractUser):
+#     is_admin= models.BooleanField('Is admin', default=False)
+#     is_customer = models.BooleanField('Is customer', default=False)
+#     is_agency = models.BooleanField('Is agency', default=False)
+
 class customer(models.Model):
     customer_id= models.IntegerField()
     fullname= models.CharField(max_length=200)

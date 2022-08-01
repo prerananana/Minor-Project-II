@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna, submit, signout, search
+from .views import index,about,destination,blog,singleblog,contact,destination_detaill,elements, packages, login, registration, test, rara, mardi, mustang, langtang, mountain, lumbini, chitwan, pokhara, bhaktapur, annapurna, submit, signout, search, admin_demo
 
 urlpatterns = [
     path('', index),
+    path('admin', admin_demo),
     path('index.html', index),
     path('about.html', about),
     path('search.html', search),
