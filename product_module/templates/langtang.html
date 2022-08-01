@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="">
-    <div class="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<div class="cont">
+    <div class="centered">
         <img src="{% static 'img/banner/banner3.jpeg' %}" alt="" height=100% width=100%>
         <!-- <h3>Saintmartine Iceland</h3>
         <p>Pixel perfect design with awesome contents</p> -->
@@ -16,6 +18,7 @@
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
                     <h3>Langtang trek</h3>
+                    <div id="map" style="width:100%; height: 70vh"></div>
                     <p>Langtang trek is a trek with real heart. The Langtang Valley is one of the most beautiful places in Nepal and was once the darling of trekkers seeking stunning landscapes and authentic culture along with heartwarming hospitality in delightful homestay guest houses — all within easy reach of Kathmandu. 
                     </p>
                     <div class="single_destination">
@@ -162,5 +165,36 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map').setView([24.590, 83.9956], 9);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
+        maxZoom: 18
+    }).addTo(map);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(27.68866, 85.33558),
+            L.latLng(29.5303, 82.0864)
+        ]
+    }).on('routesfound', function(e) {
+        var routes = e.routes;
+        console.log(routes);
+    }).addTo(map);
 
+    // var taxiIcon = L.icon({
+    //     iconUrl: 'img/taxi.png',
+    //     iconSize: [70, 70]
+    // })
+
+    // var marker = L.marker([28.2380, 75.9956], {
+    //     // icon: taxiIcon
+    // }).addTo(map);
+
+    // map.interactive(function(e) {
+    //     console.log(e)
+    // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+</script>
 {% endblock %}

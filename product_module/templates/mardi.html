@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 <div class="">
     <div class="">
         <img src="{% static 'img/banner/mardi.jpeg' %}" alt="" height=100% width=100%>
@@ -16,6 +18,7 @@
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
                     <h3>Trip to Mardi Himal</h3>
+                    <div id="map" style="width:100%; height: 70vh"></div>
                     <p>The Mardi Himal Trek is a short, newly opened route, moderate type and hidden treasure in the Annapurna region. Mardi Himal trek offers an imaging view of Annapurna, Dhaulagiri, Machhapuchhre and Manaslu ranges. Australian Camp, Pothana, Mardi Himal base camp, Siding village and Lwang are the major attractions of this trek. Nepal Hidden Treks organize a 5 days Mardi Himal Trek. 
                     </p>
                     <div class="single_destination">
@@ -131,5 +134,36 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map').setView([24.590, 83.9956], 9);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
+        maxZoom: 18
+    }).addTo(map);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(27.68866, 85.33558),
+            L.latLng(28.3131, 83.9014)
+        ]
+    }).on('routesfound', function(e) {
+        var routes = e.routes;
+        console.log(routes);
+    }).addTo(map);
 
+    // var taxiIcon = L.icon({
+    //     iconUrl: 'img/taxi.png',
+    //     iconSize: [70, 70]
+    // })
+
+    // var marker = L.marker([28.2380, 75.9956], {
+    //     // icon: taxiIcon
+    // }).addTo(map);
+
+    // map.interactive(function(e) {
+    //     console.log(e)
+    // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+</script>
 {% endblock %}

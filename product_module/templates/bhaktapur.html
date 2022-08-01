@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 <div class="">
     <div class="">
         <img src="{% static 'img/banner/banner2.jpeg' %}" alt="" height=100% width=100%>
@@ -16,6 +18,7 @@
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
                     <h3>Bhaktapur Durbar Square</h3>
+                    <div id="map" style="width:100%; height: 70vh"></div>
                     <p>Bhaktapur Durbar Square is the main attraction of the Bhaktapur city, which is the ancient royal palace. This palace is listed in UNESCO World Heritage List, which is located at 1,400m altitude. This durbar square is in Bhaktapur Municipality and is 13km away from Kathmandu city. There are four different areas in the palace complex i.e., Durbar area, Taumadhi area, Dattatreya area, and Pottery area. Among all these areas, this palace is still called the Durbar area. It is one of the most visited places of the Kathmandu valley. Bhaktapur Durbar Square is rich in both ancient history and culture, crafts, handicrafts, arts, and architecture. In ancient times, this palace was ruled by Malla kings.
                     </p>
                     <p>The Bhaktapur Durbar Square is surrounded by many lively architecture, temples, and idols. All those arts represent the Newari artists and craftsmen. The royal palace of Malla kings was originally located at Dattaray square, but later, it was moved to Durbar Square. Visitors will get captivated by the design of this building. The temples around this area like Taleju Bhawani and Temple are not allowed to get photographed.Bhaktapur Durbar Square is also a settlement area of Newar. It is their responsibility and duty to keep this heritage alive and sustainable. This durbar square is the identity of Nepalese, which shows our art, religion, funerals, culture, rituals, customs etc. </p>
@@ -146,5 +149,37 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map').setView([24.590, 83.9956], 9);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
+        maxZoom: 18
+    }).addTo(map);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(27.68866, 85.33558),
+            L.latLng(27.67245, 85.42823)
+        ]
+    }).on('routesfound', function(e) {
+        var routes = e.routes;
+        console.log(routes);
+    }).addTo(map);
+
+    // var taxiIcon = L.icon({
+    //     iconUrl: 'img/taxi.png',
+    //     iconSize: [70, 70]
+    // })
+
+    // var marker = L.marker([28.2380, 75.9956], {
+    //     // icon: taxiIcon
+    // }).addTo(map);
+
+    // map.interactive(function(e) {
+    //     console.log(e)
+    // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+</script>
 
 {% endblock %}

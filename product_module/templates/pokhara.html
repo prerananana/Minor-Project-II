@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 <div class="">
     <div class="">
         <img src="{% static 'img/banner/pokhara.jpeg' %}" alt="" height=100% width=100%>
@@ -16,6 +18,7 @@
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
                     <h3>Trip to Pokhara</h3>
+                    <div id="map" style="width:100%; height: 70vh"></div>
                     <p>Pokhara is a city on Phewa Lake, in central Nepal. It’s known as a gateway to the Annapurna Circuit, a popular trail in the Himalayas. Tal Barahi Temple, a 2-story pagoda, sits on an island in the lake. On the eastern shore, the Lakeside district has yoga centers and restaurants. In the city’s south, the International Mountain Museum has exhibits on the history of mountaineering and the people of the Himalayas. 
                     </p>
                     <p>Pokhara is the second largest city in Nepal, after Kathmandu. The town is about 200 kilometers away from Kathmandu, to the west. It rests at the foot of the Annapurna range and is a favorite trekking starting point. The city of Pokhara can be divided in two - the charming Lakeside Pokhara, and the Old City. The Lakeside part offers many tourist attractions and beautiful views, while the Old City is the commercial hub of Pokhara. You can choose to stay in either location, although we recommend Lakeside. The Lakeside is further divided into the North and the Southside. Lakeside is named so, as it surrounds the Phewa Lake or the Phewa Tal, a gorgeous freshwater lake which is eerily similar to a mirror! The lake gained popularity for its breathtaking reflection of the blue skies and the towering Mt. Machhapuchhre of the Annapurna range.</p>
@@ -127,5 +130,36 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map').setView([24.590, 83.9956], 9);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
+        maxZoom: 18
+    }).addTo(map);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(27.68866, 85.33558),
+            L.latLng(28.2380, 83.9956)
+        ]
+    }).on('routesfound', function(e) {
+        var routes = e.routes;
+        console.log(routes);
+    }).addTo(map);
 
+    // var taxiIcon = L.icon({
+    //     iconUrl: 'img/taxi.png',
+    //     iconSize: [70, 70]
+    // })
+
+    // var marker = L.marker([28.2380, 75.9956], {
+    //     // icon: taxiIcon
+    // }).addTo(map);
+
+    // map.interactive(function(e) {
+    //     console.log(e)
+    // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+</script>
 {% endblock %}

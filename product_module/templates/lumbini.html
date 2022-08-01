@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 <div class="">
     <div class="">
         <img src="{% static 'img/banner/lumbini.jpeg' %}" alt="" height=100% width=100%>
@@ -15,8 +17,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-9">
                 <div class="destination_info">
-                    <h3>Trip to lumbini 
-                    </h3>
+                    <h3>Trip to Lumbini</h3>
+                    <div id="map" style="width:100%; height: 70vh"></div>
                     <p>Lumbini, the Birthplace of the Lord Buddha Siddhartha Gautama, the Lord Buddha, was born in 623 B.C. in the famous gardens of Lumbini, which soon became a place of pilgrimage. Among the pilgrims was the Indian emperor Ashoka, who erected one of his commemorative pillars there. The site is now being developed as a Buddhist pilgrimage centre, where the archaeological remains associated with the birth of the Lord Buddha form a central feature.
                     </p>
                     <p>Lumbini is located in the south-central Terai of Nepal, situated in the foothills of the Himalayas. For millions of Buddhists the world over, it evokes a kind of holy sentiment akin to the significance of Jerusalem to Christians and Mecca to Muslims.
@@ -128,5 +130,36 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map').setView([24.590, 83.9956], 9);
+    mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: 'Leaflet &copy; ' + mapLink + ', contribution',
+        maxZoom: 18
+    }).addTo(map);
+    L.Routing.control({
+        waypoints: [
+            L.latLng(27.68866, 85.33558),
+            L.latLng(27.4787, 83.2697)
+        ]
+    }).on('routesfound', function(e) {
+        var routes = e.routes;
+        console.log(routes);
+    }).addTo(map);
 
+    // var taxiIcon = L.icon({
+    //     iconUrl: 'img/taxi.png',
+    //     iconSize: [70, 70]
+    // })
+
+    // var marker = L.marker([28.2380, 75.9956], {
+    //     // icon: taxiIcon
+    // }).addTo(map);
+
+    // map.interactive(function(e) {
+    //     console.log(e)
+    // var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+</script>
 {% endblock %}
