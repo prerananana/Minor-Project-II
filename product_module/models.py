@@ -1,5 +1,7 @@
+from importlib.resources import Package
 from django.db import models
 from django.utils.html import mark_safe
+from django.contrib.auth.models import User
 # from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -58,3 +60,9 @@ class destination_detail(models.Model):
     description= models.TextField(blank= True)
     days= models.TextField(blank=True, default="")
     package= models.ForeignKey(package, on_delete=models.CASCADE)
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    package = models.ForeignKey(package, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    entered_on = models.DateTimeField()

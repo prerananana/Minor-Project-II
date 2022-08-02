@@ -13,6 +13,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
 from .decorators import allowed_users, unauthenticated_user
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+from .models import Package, CartItem
 # from .models import User_Role
 # Create your views here.
 @allowed_users(allowed_roles=['admin'])
@@ -296,5 +298,59 @@ def index(request):
     #     }
     # return render(request, 'index.html', context)
 
+@login_required(login_url="/admin/login")
+def cart(request):
+    # get request data
+    package_id = request.GET.get("id")
+    quantity = request.GET.get("qty")
+    if package_id:
+        # retrieve product data
+        package = Package.objects.get(id=package_id)
+        try:
+            # get cart item and increase quantity
+            cart_item = CartItem.objects.get(user=request.user,
+            package=package)
+            cart_item.quantity += int(quantity)
+            cart_item.entered_on = datetime.now()
+        except CartItem.DoesNotExist:
+        # initialize cart item
+            cart_item = CartItem(
+                user=request.user,
+                package=package,
+                quantity=int(quantity),
+                entered_on = datetime.now(),
+            )
+        # save to database
+        cart_item.save()
+    # retrieve the cart items for the user from db
+    cart_items = CartItem.objects.filter(user=request.user)
+    # calculate total
+    total = 0
+    for item in cart_items:
+        total += item.package.price * item.quantity
+        # return view
+    context = {
+        'cart_items': cart_items,
+        'total': total,
+        }
+    return render(request, "cart.html", context)
 
+def removecart(request, id):
+    try:
+        # get cart item and remove it
+        package = Package.objects.get(id=id)
+        cart_item = CartItem.objects.get(user=request.user, package=package)
+        cart_item.delete()
+    except CartItem.DoesNotExist:
+        pass
+    # redirect to cart
+    return redirect(cart)
+
+def success_page(request):
+    message = request.session["message"]
+    return render(request, "success.html", {"message": message})
+    
+def error_page(request):
+    message = request.session["message"]
+    return render(request, "error.html", {"message": message})
 
