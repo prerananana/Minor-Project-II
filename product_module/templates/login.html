@@ -27,7 +27,7 @@
       <div class="section-top-border">
         <div class="row">
           <div class="col-lg-8 col-md-8">
-            <h3 class="mb-30">Login </h3>
+            <h3 class="mb-30">Welcome to Happy Trails! </h3>
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
                 <strong>Message:</strong> {{ message }}
@@ -37,7 +37,7 @@
               </div>
             {% endfor %}
             <p class="sample-text">
-               <b>Hello</b> <i>There!</i> </p>
+               <b>Already</b> <i>an existing user? Log In here!</i> </p>
                <form action="" method ='POST'>
                 {% csrf_token %}
                 <div class="mt-10">
@@ -50,15 +50,15 @@
                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
                     class="single-input">
                     <section class="button-area">
-                      <div class="container box_1170 border-top-generic">
-                        <button type="submit" class="button button-contactForm boxed-btn">Login</button>
+                      <div class="button-group-area mt-10">
+                        <button type="submit" class="genric-btn info circle">Login</button>
                       </div>
                       
                     </section>
                   
                 </section>
-                <div class="container box_1170 border-top-generic">
-                  Create a new account<a href="registration.html" class="genric-btn link-border circle">Registration</a>
+                <div class="button-group-area mt-10">
+                 Don't have an account yet?<a href="registration.html" class="genric-btn success circle">Registration</a>
                 </div>
                 <!-- For Gradient Border Use -->
                 <!-- <div class="mt-10">

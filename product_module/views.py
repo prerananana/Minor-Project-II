@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.contrib.auth.models import Group
 
 from product_module.decorators import unauthenticated_user
-from .models import booking, package, guide, destination_detail
+from .models import Booking, Package, Guide, destination_detail
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib import messages
@@ -23,9 +23,9 @@ def admin_demo(request):
 def search(request):
     return render(request, 'search.html', {})
 def about(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -34,9 +34,9 @@ def about(request):
     return render(request, 'about.html', context)
 
 def mardi(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -45,9 +45,9 @@ def mardi(request):
     return render(request, 'mardi.html', context)
 
 def mustang(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -56,9 +56,9 @@ def mustang(request):
     return render(request, 'mustang.html', context)
 
 def mountain(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -67,9 +67,9 @@ def mountain(request):
     return render(request, 'mountain.html', context)
 
 def langtang(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -78,9 +78,9 @@ def langtang(request):
     return render(request, 'langtang.html', context)
 
 def pokhara(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -89,9 +89,9 @@ def pokhara(request):
     return render(request, 'pokhara.html', context)
 
 def annapurna(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -100,9 +100,9 @@ def annapurna(request):
     return render(request, 'annapurna.html', context)
 
 def lumbini(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -111,9 +111,9 @@ def lumbini(request):
     return render(request, 'lumbini.html', context)
 
 def chitwan(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -122,9 +122,9 @@ def chitwan(request):
     return render(request, 'chitwan.html', context)
 
 def bhaktapur(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -134,9 +134,9 @@ def bhaktapur(request):
 
 @login_required(login_url='login.html')
 def rara(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -146,7 +146,7 @@ def rara(request):
 
 def test(request):
     destination= destination_detail.objects.all()
-    packages= package.objects.all()
+    packages= Package.objects.all()
     context= {
         'destination' : destination,
         'packages' : packages
@@ -156,8 +156,8 @@ def test(request):
 def packages(request):
     return render(request, 'packages.html', {})
 def destination(request):
-    destination= booking.objects.all()
-    packages= package.objects.all()
+    destination= Booking.objects.all()
+    packages= Package.objects.all()
     context = {'destination': destination,
               'packages': packages,
             }
@@ -174,7 +174,7 @@ def destination_detaill(request):
     #     destination_id = request.GET.get("destination")
     #     destination_details= destination_detail.objects.get(destination_id = destination_id)
     destination= destination_detail.objects.all()
-    packages= package.objects.all()
+    packages= Package.objects.all()
     context= {
         'destination' : destination,
         'packages' : packages
@@ -233,9 +233,9 @@ def signout(request):
     messages.success(request, "Logged Out Sucessfully")
     return redirect('index.html')
 def submit(request):
-    bookings = booking.objects.all()
-    packages = package.objects.all()
-    guides = guide.objects.all()
+    bookings = Booking.objects.all()
+    packages = Package.objects.all()
+    guides = Guide.objects.all()
     context = {
         'bookings': bookings,
         'packages': packages,
@@ -249,19 +249,19 @@ def index(request):
         guide_id = request.GET.get("guide")
         if package_id:
             filter_query = Q(package__id=package_id)
-            bookings = booking.objects.filter(filter_query)
+            bookings = Booking.objects.filter(filter_query)
         elif guide_id:
             filter_query = Q(guide__id=guide_id)
-            bookings = booking.objects.filter(filter_query)
+            bookings = Booking.objects.filter(filter_query)
         else:
 
     #         # new product : product that are registered since last 7 days (top 10 products)
     #         new_products = Product.objects.filter(Q(registered_on__gte=(datetime.now() - timedelta(days=7))))[:10]
             
             #info----needed-----
-            bookings = booking.objects.all()
-            packages = package.objects.all()
-            guides = guide.objects.all()
+            bookings = Booking.objects.all()
+            packages = Package.objects.all()
+            guides = Guide.objects.all()
             context = {
                 'bookings': bookings,
                 'packages': packages,
@@ -306,11 +306,10 @@ def cart(request):
     quantity = request.GET.get("qty")
     if package_id:
         # retrieve product data
-        package = package.objects.get(id=package_id)
+        package = Package.objects.get(package_id=package_id)
         try:
             # get cart item and increase quantity
-            cart_item = CartItem.objects.get(user=request.user,
-            package=package)
+            cart_item = CartItem.objects.get(user=request.user,package=package)
             cart_item.quantity += int(quantity)
             cart_item.entered_on = datetime.now()
         except CartItem.DoesNotExist:
@@ -336,11 +335,11 @@ def cart(request):
         }
     return render(request, "cart.html", context)
 
-def removecart(request, id):
+def removecart(request, package_id):
     global package
     try:
         # get cart item and remove it
-        package = Package.objects.get(id=id)
+        package = Package.objects.get(package_id=package_id)
         cart_item = CartItem.objects.get(user=request.user, package=package)
         cart_item.delete()
     except CartItem.DoesNotExist:

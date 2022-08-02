@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
-from product_module.models import package
+from product_module.models import Package
 
 
 # Create your models here.
@@ -22,6 +22,6 @@ class Invoice(models.Model):
 
 class InvoiceDetail(models.Model):
     invoice = models.ForeignKey("Invoice", on_delete=models.CASCADE)
-    package = models.ForeignKey(package, on_delete=models.CASCADE, default=1)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE, default=1)
     quantity = models.IntegerField()
     sub_amount = models.FloatField()

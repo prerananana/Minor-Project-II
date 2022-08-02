@@ -3,17 +3,44 @@
 {% block header %} Your Cart {% endblock %}
 {% block content %}
     {% if cart_items %}
+    <!doctype html>
+    <html class="no-js" lang="zxx">
+    
+    <body>
+        <!--[if lte IE 9]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+            <![endif]-->
+    
+        <!-- bradcam_area  -->
+        <div class="bradcam_area bradcam_bg_4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bradcam_text text-center">
+                            <h3>Cart</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ bradcam_area  -->
+    
+        <!-- Start Sample Area -->
+        <section class="sample-text-area">
+            <div class="container box_1170">
+                <h3 class="text-heading">🛒 Your Cart</h3>
         <div class="">
             <h4 class="">
-                <span class=""><i class="" ariahidden="true"></i> Your cart</span>
-                <span class="">{{cart_items|length}}</span>
+                <span class=""><i class="" ariahidden="true"></i> You have <span class="">{{cart_items|length}}</span> items in cart</span>
+                
             </h4>
         </div>
         <table class="">
             <thead>
                 <tr>
-                    <th>Image</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Action</th>
@@ -22,21 +49,21 @@
             <tbody>
             {% for item in cart_items %}
             <tr>
-                <td><img height="50" width="50" src="{{item.package.image_url }}" /></td>
                 <td>{{ item.package.name }}</td>
+                <td><img height="50" width="50" src="{{item.package.image_url }}" /></td>
                 <td><h5>NRs. {{ item.package.price }}</h5></td>
                 <td><h5>{{ item.quantity }}</h5></td>
                     <td>
                     <form method="post" action="/cart/remove/{{item.package.id}}">
                     {% csrf_token %}
-                        <button type="submit" class="" type="submit"><i class="" aria-hidden="true"></i> Remove</button>
+                        <button type="submit" class="genric-btn danger radius" type="submit"><i class="" aria-hidden="true"></i> Remove</button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
                 <tr>
                     <td></td>
-                    <td style="text-align: right;"><h3>Total Price:</h3></td>
+                    <td style=""><h3>Total Price:</h3></td>
                     <td><h3>NRs. {{ total }}</h3></td>
                     <td>
                         <form method="post" action="/payment/checkout/">
@@ -44,18 +71,18 @@
                             <div class="">
                                 <input type="text" class="" name="token" placeholder="Token" />
                                 <input type="hidden" name="amount" value="{{ total }}" />
-                                <button type="submit" class="" type="submit"><i class="" aria-hidden="true"></i>Checkout Payment</button>
+                                <button type="submit" class="genric-btn primary radius" type="submit"><i class="" aria-hidden="true"></i>Checkout Payment</button>
                             </div>
                         </form>
                     </td>
                     <td>
-                        <button onclick="location.href='/';" class="">
+                        <button onclick="location.href='/';" class="genric-btn success radius">
                         <i class="" aria-hidden="true"></i> Back to shop!</button>
                     </td>
                 </tr>                     
             </tbody>
         </table>
     {% else %}
-    <button onclick="location.href='/';" class=""><i class="" aria-hidden="true"></i> Back to shop!</button>
+    <button onclick="location.href='/';" class="genric-btn success radius"><i class="" aria-hidden="true"></i> Back to shop!</button>
     {% endif %}
 {% endblock %}

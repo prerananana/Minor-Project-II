@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import PaymentGateway, Invoice, InvoiceDetail
-from product_module.models import CartItem, package
+from product_module.models import CartItem, Package
 from datetime import date, datetime
 from django.db import transaction
 from django.urls import reverse
@@ -8,17 +8,16 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required(login_url="/admin/login")
 def cart(request):
-    global package
+    # global package
     # get request data
     package_id = request.GET.get("id")
     quantity = request.GET.get("qty")
     if package_id:
     # retrieve product data
-        package = package.objects.get(id=package_id)
+        package = Package.objects.get(id=package_id)
         try:
             # get cart item and increase quantity
-            cart_item = CartItem.objects.get(user=request.user,
-            package=package)
+            cart_item = CartItem.objects.get(user=request.user, package=package)
             cart_item.quantity += int(quantity)
             cart_item.entered_on = datetime.now()
         except CartItem.DoesNotExist:
@@ -43,10 +42,10 @@ def cart(request):
             return render(request, "cart.html", context)
 
 def removecart(request, id):
-    global package
+    # global package
     try:
         # get cart item and increase quantity
-        package = package.objects.get(id=id)
+        package = Package.objects.get(id=id)
         cart_item = CartItem.objects.get(user=request.user, package=package)
         cart_item.delete()
     except CartItem.DoesNotExist:
@@ -55,17 +54,17 @@ def removecart(request, id):
     return redirect(cart)
 
 def success_page(request):
-    global package
+    # global package
     message = request.session["message"]
     return render(request, "success_page.html", {"message": message})
 
 def error_page(request):
-    global package
+    # global package
     message = request.session["message"]
     return render(request, "error.html", {"message": message})
 
 def confirmpayment(request):
-    global package
+    # global package
     if request.method == "POST":
         token = request.POST.get("token")
         amount = request.POST.get("amount")
@@ -81,10 +80,10 @@ def confirmpayment(request):
             request.session["message"] = str(e)
             return redirect(reverse('error_page'))
         else:
-            request.session["message"] = f"Payment successfully completed with NRs. {amount} from your balance!"
+            request.session["message"] = f"Payment successfully completed with NRs. {amount} from your balance! Happy travelling!"
             return redirect(reverse('success_page'))
 def make_payment(token, amount):
-    global package
+    # global package
     try:
         payment_gateway = PaymentGateway.objects.get(token=token)
     except:
@@ -100,7 +99,7 @@ def make_payment(token, amount):
     payment_gateway.balance -= amount
     payment_gateway.save()
 def maintain_invoice(request, token, amount):
-    global package
+    # global package
     # retrieve cart items
     cart_items = CartItem.objects.filter(user=request.user)
     # save invoice
@@ -124,10 +123,7 @@ def maintain_invoice(request, token, amount):
     # adjust product quantity and clear cart
     for cart_item in cart_items:
         # reduce quantity from Product
-        package = package.objects.get(id=cart_item.package.id)
-        if package.quantity < cart_item.quantity:
-            raise Exception(f"Insufficient quantity {cart_item.quantity} for {package.name}")
-        package.quantity -= cart_item.quantity
+        package = Package.objects.get(id=cart_item.package.id)
         package.save()
             # clear cart for the user
         cart_item.delete()
