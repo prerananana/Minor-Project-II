@@ -52,3 +52,6 @@ class destination_detailAdmin(admin.ModelAdmin):
         model= destination_detail
 admin.site.register(destination_detail, destination_detailAdmin)
 
+from .models import CartItem
+admin.site.register(CartItem)
+

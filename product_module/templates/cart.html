@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+{% block header %} Your Cart {% endblock %}
+{% block content %}
+    {% if cart_items %}
+        <div class="">
+            <h4 class="">
+                <span class=""><i class="" ariahidden="true"></i> Your cart</span>
+                <span class="">{{cart_items|length}}</span>
+            </h4>
+        </div>
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img height="50" width="50" src="{{item.package.image_url }}" /></td>
+                <td>{{ item.package.name }}</td>
+                <td><h5>NRs. {{ item.package.price }}</h5></td>
+                <td><h5>{{ item.quantity }}</h5></td>
+                    <td>
+                    <form method="post" action="/cart/remove/{{item.package.id}}">
+                    {% csrf_token %}
+                        <button type="submit" class="" type="submit"><i class="" aria-hidden="true"></i> Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;"><h3>Total Price:</h3></td>
+                    <td><h3>NRs. {{ total }}</h3></td>
+                    <td>
+                        <form method="post" action="/payment/checkout/">
+                        {% csrf_token %}
+                            <div class="">
+                                <input type="text" class="" name="token" placeholder="Token" />
+                                <input type="hidden" name="amount" value="{{ total }}" />
+                                <button type="submit" class="" type="submit"><i class="" aria-hidden="true"></i>Checkout Payment</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <button onclick="location.href='/';" class="">
+                        <i class="" aria-hidden="true"></i> Back to shop!</button>
+                    </td>
+                </tr>                     
+            </tbody>
+        </table>
+    {% else %}
+    <button onclick="location.href='/';" class=""><i class="" aria-hidden="true"></i> Back to shop!</button>
+    {% endif %}
+{% endblock %}
