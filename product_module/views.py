@@ -300,12 +300,13 @@ def index(request):
 
 @login_required(login_url="/admin/login")
 def cart(request):
+    global package
     # get request data
     package_id = request.GET.get("id")
     quantity = request.GET.get("qty")
     if package_id:
         # retrieve product data
-        package = Package.objects.get(id=package_id)
+        package = package.objects.get(id=package_id)
         try:
             # get cart item and increase quantity
             cart_item = CartItem.objects.get(user=request.user,
@@ -336,6 +337,7 @@ def cart(request):
     return render(request, "cart.html", context)
 
 def removecart(request, id):
+    global package
     try:
         # get cart item and remove it
         package = Package.objects.get(id=id)

@@ -1,9 +1,10 @@
-from email.policy import default
 from django.db import models
-from django.contrib.auth.models import User
-from product_module.models import Package, package
-# Create your models here.
 import uuid
+from django.contrib.auth.models import User
+from product_module.models import package
+
+
+# Create your models here.
 class PaymentGateway(models.Model):
     token = models.UUIDField(default= uuid.uuid4,editable=False)
     expiry_date = models.DateField()
@@ -20,7 +21,7 @@ class Invoice(models.Model):
         return self.total_amount
 
 class InvoiceDetail(models.Model):
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE, default="")
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    invoice = models.ForeignKey("Invoice", on_delete=models.CASCADE)
+    package = models.ForeignKey(package, on_delete=models.CASCADE, default=1)
     quantity = models.IntegerField()
     sub_amount = models.FloatField()
