@@ -39,7 +39,7 @@
         <table class="">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    {% comment %} <th>Name</th> {% endcomment %}
                     <th>Image</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -49,7 +49,7 @@
             <tbody>
             {% for item in cart_items %}
             <tr>
-                <td>{{ item.package.name }}</td>
+                {% comment %} <td>{{ item.package.name }}</td> {% endcomment %}
                 <td><img height="50" width="50" src="{{item.package.image_url }}" /></td>
                 <td><h5>NRs. {{ item.package.price }}</h5></td>
                 <td><h5>{{ item.quantity }}</h5></td>
@@ -60,6 +60,8 @@
                     </form>
                 </td>
             </tr>
+        </tbody>
+            <br>
             {% endfor %}
                 <tr>
                     <td></td>
@@ -82,6 +84,7 @@
                 </tr>                     
             </tbody>
         </table>
+        <br>
     {% else %}
     <button onclick="location.href='/';" class="genric-btn success radius"><i class="" aria-hidden="true"></i> Back to shop!</button>
     {% endif %}
